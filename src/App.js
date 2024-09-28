@@ -1,25 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import Dashbord from "./Componenet/Dashbord";
+import Manage from "./Componenet/Mangae";
+import Sidebar from "./Componenet/Sidebar";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import TastMangment from "./Componenet/TaskMangment";
+import StatusDadline from "./Componenet/Status";
+import TeamComunication from "./Componenet/Team";
+import Reportcomp from "./Componenet/Report";
 
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Sidebar />,
+    children: [{ path: "/", element: <Dashbord /> },
+      {path:"/Manageproject", element:<Manage/> },
+      {path:"/Taskmanagement", element:<TastMangment/>},
+      {path:"/StatusAndDadline",element:<StatusDadline/>},
+      {path:"/TeamComuniction", element:<TeamComunication/>},
+      {path:'/Report',element:<Reportcomp/>}
+
+    ],
+  },
+]);
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  return <RouterProvider router={router} />;
 }
 
 export default App;
